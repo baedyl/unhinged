@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
 
 /* ─── Constants ─────────────────────────────────────────────────────────── */
-const TOTAL_SPOTS = 200;
+const TOTAL_SPOTS = 47;
 const ORANGE = '#FF7518';
 
 /* ─── Schema ─────────────────────────────────────────────────────────────── */
