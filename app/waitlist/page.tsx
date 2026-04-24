@@ -132,6 +132,10 @@ export default function WaitlistPage() {
   }, [vibeCheck, t]);
 
   const onSubmit = async (data: FormValues) => {
+    // Generate a verification token before insert so the edge function
+    // can read it directly from the webhook record — no extra DB round-trip needed.
+    const verificationToken = crypto.randomUUID();
+
     // Insert row
     const { error } = await supabase.from('waitlist').insert({
       email: data.email,
@@ -139,6 +143,7 @@ export default function WaitlistPage() {
       vibe_check: data.vibe_check,
       hot_take: data.hot_take || null,
       status: data.neighbourhood, // keep legacy column populated
+      verification_token: verificationToken,
     });
 
     if (error) {
